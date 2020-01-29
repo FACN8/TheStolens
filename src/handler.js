@@ -34,8 +34,24 @@ const inputHandler = (request, response) => {
             }
         })
         .then((res) => {
-            response.writeHead(200, extension.json);
-            response.end(JSON.stringify(res.data));
+            let data = res.data.data;
+            let elements = [];
+
+            Object.keys(data).forEach((key)=>{
+                let item = '<li>';
+                Object.keys(data[key]).forEach((key1)=>{
+                    let span = '<span>';
+                    span += (data[key])[key1];
+                    span += '</span>';
+                    item += span;
+                    item += '<br>';
+                });
+                item += '</li>';
+                elements.push(item);
+            })
+
+            response.writeHead(200, extension.html);
+            response.end(JSON.stringify(elements));
         })
         .catch((error) => {
             console.log(error);
