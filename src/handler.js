@@ -1,18 +1,48 @@
 const fs = require("fs");
 const path = require("path");
-const url = require("url");
+const urlMod = require("url");
 const querystring = require("querystring");
+const axios = require('axios');
 
 const extension = {
-  html: { "Content-Type": "text/html" },
-  css: { "Content-Type": "text/css" },
-  js: { "Content-Type": "application/javascript" },
-  png: { "Content-Type": "image/png" },
-  jpg: { "Content-Type": "image/jpg" },
-  ico: { "Content-Type": "image/x-icon" },
-  json: { "Content-Type": "application/json" },
-  text: { "Content-Type": "text/plain" }
-}; 
+    html: { "Content-Type": "text/html" },
+    css: { "Content-Type": "text/css" },
+    js: { "Content-Type": "application/javascript" },
+    png: { "Content-Type": "image/png" },
+    jpg: { "Content-Type": "image/jpg" },
+    ico: { "Content-Type": "image/x-icon" },
+    json: { "Content-Type": "application/json" },
+    text: { "Content-Type": "text/plain" }
+};
+
+const inputHandler = (request, response) => {
+    const apiKey = process.env.API_KEY;
+    const queries = querystring.parse(urlMod.parse(request.url).query);
+
+    axios({
+            "method": "GET",
+            "url": process.env.API,
+            "headers": {
+                "content-type": "application/octet-stream",
+                "x-rapidapi-host": "travelpayouts-travelpayouts-flight-data-v1.p.rapidapi.com",
+                "x-rapidapi-key": process.env.API_KEY,
+                "x-access-token": process.env.ACCESS_TOKEN
+            },
+            "params": {
+                "origin": queries.from,
+                "currency": queries.currency
+            }
+        })
+        .then((res) => {
+            response.writeHead(200, extension.json);
+            response.end(JSON.stringify(res.data));
+        })
+        .catch((error) => {
+            console.log(error);
+            response.writeHead(503, extension.html);
+            response.end('service Currently Unavailable: Error 503');
+        });
+};
 
 const publicHandler = (request, response) => {
     const url = path.join(__dirname, "..", request.url);
@@ -30,24 +60,22 @@ const publicHandler = (request, response) => {
     });
 };
 
-const inputHandler = (request, response) => {};
-
 const homePageHandler = (request, response) => {
-  const url = path.join(__dirname, "..", "public", "index.html");
+    const url = path.join(__dirname, "..", "public", "index.html");
 
-  fs.readFile(url, (err, file) => {
-    if (err) {
-      response.writeHead(500, extension.text);
-      response.end(`Error reading file: ${err}`);
-      return;
-    }
-    response.writeHead(200, extension.html);
-    response.end(file);
-  });
+    fs.readFile(url, (err, file) => {
+        if (err) {
+            response.writeHead(500, extension.text);
+            response.end(`Error reading file: ${err}`);
+            return;
+        }
+        response.writeHead(200, extension.html);
+        response.end(file);
+    });
 };
 
 module.exports = {
-  homePageHandler,
-  publicHandler,
-  inputHandler
+    homePageHandler,
+    publicHandler,
+    inputHandler
 };
