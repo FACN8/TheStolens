@@ -23,9 +23,13 @@ form.addEventListener("submit", (event) => {
     fetchData(url, (err, res) => {
         if (err) {
             //No Results Found
+            console.log(err)
             return;
         }
         //Show user suggestions
-        console.log(res);
+        res.data.forEach((element) => {
+            routesContainer.innerHTML += element;
+        })
+        console.log(res.data);
     })
 })
