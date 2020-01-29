@@ -26,6 +26,6 @@ form.addEventListener("submit", (event) => {
             return;
         }
         //Show user suggestions
-        console.log('front-End: ' + res)
+        console.log(res);
     })
 })
