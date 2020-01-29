@@ -1,9 +1,8 @@
 const searchForm = document.querySelector('#searchForm');
 const routesContainer = document.querySelector('#routes');
-const toInput = document.querySelector("input[type='text' name='toInput']");
-const fromInput = document.querySelector("input[type='text' name='fromInput']");
-const form = document.querySelector('form')
-const axios = require('axios');
+const toInput = document.querySelector('#toInput');
+const fromInput = document.querySelector('#fromInput');
+const form = document.querySelector('form');
 
 const fetchData = (url, cb) => {
     axios.get(url)
@@ -17,24 +16,6 @@ const fetchData = (url, cb) => {
             console.log('request to back-end')
         })
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();

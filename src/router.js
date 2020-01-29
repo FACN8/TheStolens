@@ -3,9 +3,7 @@ const handler = require("./handler.js");
 const router = (request, response) => {
   const url = request.url;
 
-  console.log('router called');
   if (url === "/") {
-      console.log('homepage handler called');
     handler.homePageHandler(request, response);
   } else if (url.includes("/public/")) {
     handler.publicHandler(request, response);
