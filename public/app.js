@@ -1,6 +1,6 @@
 const searchForm = document.querySelector('#searchForm');
 const routesContainer = document.querySelector('#routes');
-const toInput = document.querySelector('#toInput');
+const currencyInput = document.querySelector('#currencyInput');
 const fromInput = document.querySelector('#fromInput');
 const form = document.querySelector('form');
 
@@ -12,23 +12,20 @@ const fetchData = (url, cb) => {
         .catch((error) => {
             cb(error)
         })
-        .finally(() => {
-            console.log('request to back-end')
-        })
 };
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
-    if (toInput.value === '' || fromInput.value === '') {
+    if (currencyInput.value === '' || fromInput.value === '') {
         return;
     }
-    const url = ('http://localhost:9000/search?to=' + toInput.value + '&from=' + fromInput.value)
+    const url = ('http://localhost:8080/search?currency=' + currencyInput.value + '&from=' + fromInput.value)
     fetchData(url, (err, res) => {
         if (err) {
             //No Results Found
             return;
         }
         //Show user suggestions
-
+        console.log('front-End: ' + res)
     })
 })
