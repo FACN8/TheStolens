@@ -40,13 +40,14 @@ const inputHandler = (request, response) => {
             Object.keys(data).forEach((key)=>{
                 let item = '<li>';
                 Object.keys(data[key]).forEach((key1)=>{
-                    let span = '<span>';
-                    span += (data[key])[key1];
+                    let span = '<br><span>';
+                    span += key1.substring(0, 1).toUpperCase() + key1.replace('_', ' ').slice(1) + ': ' + (data[key])[key1];
                     span += '</span>';
                     item += span;
                     item += '<br>';
                 });
                 item += '</li>';
+                item = item.replace('<br>', '');
                 elements.push(item);
             })
 
@@ -76,22 +77,7 @@ const publicHandler = (request, response) => {
     });
 };
 
-const homePageHandler = (request, response) => {
-    const url = path.join(__dirname, "..", "public", "index.html");
-
-    fs.readFile(url, (err, file) => {
-        if (err) {
-            response.writeHead(500, extension.text);
-            response.end(`Error reading file: ${err}`);
-            return;
-        }
-        response.writeHead(200, extension.html);
-        response.end(file);
-    });
-};
-
 module.exports = {
-    homePageHandler,
     publicHandler,
     inputHandler
 };

@@ -14,22 +14,29 @@ const fetchData = (url, cb) => {
         })
 };
 
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
+const searchFlights = (event) => {
+    if (event) event.preventDefault();
     if (currencyInput.value === '' || fromInput.value === '') {
         return;
     }
     const url = ('/search?currency=' + currencyInput.value + '&from=' + fromInput.value)
     fetchData(url, (err, res) => {
-        if (err) {
-            //No Results Found
-            console.log(err)
+        currencyInput.value = '';
+        fromInput.value = '';
+        if (err || res.data.length === 0) {
+            alert('No results found');
+            console.log(err);
             return;
         }
-        //Show user suggestions
+        while (routesContainer.firstChild) {
+            routesContainer.removeChild(routesContainer.firstChild);
+        }
         res.data.forEach((element) => {
             routesContainer.innerHTML += element;
         })
         console.log(res.data);
     })
-})
+};
+
+searchFlights();
+form.addEventListener("submit", searchFlights);
