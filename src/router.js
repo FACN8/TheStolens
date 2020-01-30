@@ -1,13 +1,14 @@
 const handler = require("./handler.js");
 
 const router = (request, response) => {
-  const url = request.url;
 
-  if (url === "/") {
-    handler.homePageHandler(request, response);
-  } else if (url.includes("/public/")) {
+  if (request.url === '/') {
+    request.url = '/public/index.html';
+  }
+
+  if (request.url.includes("/public/")) {
     handler.publicHandler(request, response);
-  } else if (url.includes("/search?")) {
+  } else if (request.url.includes("/search?")) {
     handler.inputHandler(request, response);
   } else {
     response.writeHead(404, { "Content-Type": "text/plain" });
