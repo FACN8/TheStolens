@@ -19,7 +19,7 @@ form.addEventListener("submit", (event) => {
     if (currencyInput.value === '' || fromInput.value === '') {
         return;
     }
-    const url = ('http://localhost:7000/search?currency=' + currencyInput.value + '&from=' + fromInput.value)
+    const url = ('http://localhost:8080/search?currency=' + currencyInput.value + '&from=' + fromInput.value)
     fetchData(url, (err, res) => {
         if (err) {
             //No Results Found
