@@ -1,46 +1,99 @@
 * {
-  font-family: Arial, Helvetica, sans-serif;
-  box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    font-size: medium;
 }
 
 body {
-  margin: 0;
+    margin: 0;
+    background-image: url(./images/body.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+h1 {
+    font-size: xx-large;
 }
 
 header {
-  background-image: url("../public/images/header.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  display: flex;
-  justify-content: center;
-  padding-top: 5vh;
-  padding-bottom: 5vh;
-  margin: 0;
+    display: flex;
+    justify-content: center;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    margin: 0;
 }
 
 #main-container {
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 #form {
-  border: solid black 2px;
-  margin: 2vh;
-  padding: 10px;
+    margin: 2vh;
+    padding: 10px;
 }
 
 form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+form input {
+    width: 60vw;
+    height: 5vh;
+    margin: 7px;
+    text-align: center;
+    cursor: pointer;
+}
+
+::placeholder {
+    color: red;
+    opacity: 0.5;
+}
+
+form input[type=text] {
+    color: limegreen !important;
+    text-transform: uppercase;
+    font-size: large;
+    background: white;
+    border-radius: 6px;
+    border: 4px solid black !important;
+    display: inline-block;
+    transition: all 0.3 ease 0s;
+}
+
+form input[type=text]:hover {
+    background: rgb(116, 114, 114) !important;
+    border-radius: 50px;
+    border-color: rgb(116, 114, 114) !important;
+    transition: all 0.3s ease 0s;
+}
+
+form input[type=submit] {
+    color: limegreen !important;
+    text-transform: uppercase;
+    font-size: large;
+    background: white;
+    border-radius: 6px;
+    border: 4px solid black !important;
+    display: inline-block;
+    transition: all 0.3 ease 0s;
+}
+
+form input[type=submit]:hover {
+    background: rgb(116, 114, 114) !important;
+    border-radius: 50px;
+    border-color: rgb(116, 114, 114) !important;
+    transition: all 0.3s ease 0s;
 }
 
 #routes {
-  border: solid black 2px;
-  margin: 2vh;
+    margin: 2vh;
 }
 
-li {
-}
+li {}
