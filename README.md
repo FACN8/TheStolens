@@ -14,7 +14,11 @@
 
 ## How to install the project?
 git clone https://github.com/FACN8/TheStolens.git 
+
 cd into the directory
+
 `run npm i `to install node modules
+
 `npm test` can be run for the (minimal) tests
+
 open the local index.html file
