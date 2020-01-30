@@ -23,7 +23,6 @@ const createRouteElement = data => {
         data[key][key1];
       span += "</span>";
       item += span;
-      item += "<br>";
     });
     item += "</li>";
     item = item.replace("<br>", "");
