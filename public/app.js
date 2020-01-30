@@ -30,7 +30,7 @@ const searchFlights = (event) => {
         }
         while (routesContainer.firstChild) {
             routesContainer.removeChild(routesContainer.firstChild);
-        }
+          }
         res.data.forEach((element) => {
             routesContainer.innerHTML += element;
         })

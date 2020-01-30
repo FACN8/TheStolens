@@ -8,3 +8,5 @@ const server = http.createServer(router);
 server.listen(port, () => {
   console.log("Now listening on port " + port);
 });
+
+module.exports = server;

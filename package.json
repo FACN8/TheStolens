@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "jest",
         "lint": "eslint .",
         "start": "node ./src/server.js",
         "start:watch": "nodemon ./src/server.js"
@@ -13,7 +13,9 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "eslint": "^6.8.0"
+        "eslint": "^6.8.0",
+        "jest": "^25.1.0",
+        "supertest": "^4.0.2"
     },
     "dependencies": {
         "axios": "^0.19.2",
